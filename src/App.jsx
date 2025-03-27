@@ -28,7 +28,7 @@ const WaterQualityForm = () => {
 
   return (
     <div>
-      <h2>Water Quality Prediction</h2>
+      <h2>🌊 Water Quality Prediction</h2>
       <form onSubmit={handleSubmit}>
         <input type="number" name="temperature" placeholder="Temperature" onChange={handleChange} required />
         <input type="number" name="ph" placeholder="pH" onChange={handleChange} required />
