@@ -47,5 +47,30 @@ const WaterQualityForm = () => {
     </div>
   );
 };
+const fetchPredictions = async () => {
+  try {
+    const response = await fetch("https://your-api.onrender.com/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        temperature: 25.5,
+        ph: 7.2,
+        tds: 500,
+        turbidity: 3.5
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.statusText}`);
+    }
+
+    const data = await response.json();  // <-- ERROR HAPPENS HERE IF RESPONSE IS EMPTY
+    console.log("API Response:", data);
+  } catch (error) {
+    console.error("Fetch Error:", error);
+  }
+};
 
 export default WaterQualityForm;
