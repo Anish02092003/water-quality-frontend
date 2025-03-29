@@ -49,7 +49,7 @@ const WaterQualityForm = () => {
 };
 const fetchPredictions = async () => {
   try {
-    const response = await fetch("https://your-api.onrender.com/predict", {
+    const response = await fetch("https://water-quality-backend-13.onrender.com/predict", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
