@@ -6,7 +6,7 @@ export default function App() {
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        fetch("https://your-backend-url.com/predict")
+        fetch("https://water-quality-backend-jwnh.onrender.com/predict")
             .then(response => response.json())
             .then(result => {
                 setData(result);
