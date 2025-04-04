@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import * as Recharts from "recharts";
 
 export default function App() {
     const [data, setData] = useState(null);
@@ -17,7 +17,7 @@ export default function App() {
             .then(response => response.json())
             .then(result => {
                 setData(result);
-                setChartData(prevData => [...prevData.slice(-20), {  // Keep only last 20 entries
+                setChartData(prevData => [...prevData.slice(-20), {
                     time: new Date().toLocaleTimeString(),
                     temperature: result.temperature,
                     ph: result.ph,
@@ -57,8 +57,8 @@ export default function App() {
         })
         .then(response => response.json())
         .then(() => {
-            fetchPredictions(); // Fetch updated predictions
-            setFormData({ temperature: "", ph: "", tds: "", turbidity: "" }); // Clear form
+            fetchPredictions();
+            setFormData({ temperature: "", ph: "", tds: "", turbidity: "" });
         })
         .catch(error => console.error("Error submitting data:", error));
     };
@@ -95,18 +95,18 @@ export default function App() {
             {/* Graph Section */}
             <div className="w-full max-w-2xl mt-8">
                 <h2 className="text-xl font-semibold text-center">Water Quality Trends</h2>
-                <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={chartData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="time" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="temperature" stroke="#ff7300" name="Temperature" />
-                        <Line type="monotone" dataKey="ph" stroke="#387908" name="pH Level" />
-                        <Line type="monotone" dataKey="tds" stroke="#8884d8" name="TDS" />
-                        <Line type="monotone" dataKey="turbidity" stroke="#82ca9d" name="Turbidity" />
-                    </LineChart>
-                </ResponsiveContainer>
+                <Recharts.ResponsiveContainer width="100%" height={300}>
+                    <Recharts.LineChart data={chartData}>
+                        <Recharts.CartesianGrid strokeDasharray="3 3" />
+                        <Recharts.XAxis dataKey="time" />
+                        <Recharts.YAxis />
+                        <Recharts.Tooltip />
+                        <Recharts.Line type="monotone" dataKey="temperature" stroke="#ff7300" name="Temperature" />
+                        <Recharts.Line type="monotone" dataKey="ph" stroke="#387908" name="pH Level" />
+                        <Recharts.Line type="monotone" dataKey="tds" stroke="#8884d8" name="TDS" />
+                        <Recharts.Line type="monotone" dataKey="turbidity" stroke="#82ca9d" name="Turbidity" />
+                    </Recharts.LineChart>
+                </Recharts.ResponsiveContainer>
             </div>
         </div>
     );
